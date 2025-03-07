@@ -22,8 +22,8 @@ export default async function handler(req, res) {
           transcript,
           recording_url,
           disconnection_reason, // Nuevo: disconnection reason
-          from_number,          // Nuevo: número de teléfono origen
-          to_number,            // Nuevo: número de teléfono destino
+          from_number, // Nuevo: número de teléfono origen
+          to_number, // Nuevo: número de teléfono destino
           call_analysis: {
             call_summary = "N/A",
             user_sentiment = "N/A",
@@ -44,7 +44,10 @@ export default async function handler(req, res) {
 
       // Convertir timestamps a fecha y hora legibles
       const startTime = new Date(start_timestamp).toLocaleString();
-      const duration = `${Math.floor(duration_ms / 60000)} mins ${((duration_ms % 60000) / 1000).toFixed(0)} secs`;
+      const duration = `${Math.floor(duration_ms / 60000)} mins ${(
+        (duration_ms % 60000) /
+        1000
+      ).toFixed(0)} secs`;
 
       // Contenido del email con los cambios:
       // 1. Se muestran los 3 números de teléfono: from_number, to_number y user_phone_number.
@@ -69,7 +72,9 @@ export default async function handler(req, res) {
         <p><strong>Ticket Type:</strong> ${call_type}</p>
         <p><strong>Call Summary:</strong> ${call_summary}</p>
         <p><strong>User Sentiment:</strong> ${user_sentiment}</p>
-        <p><strong>Call Successful:</strong> ${call_successful ? "Yes" : "No"}</p>
+        <p><strong>Call Successful:</strong> ${
+          call_successful ? "Yes" : "No"
+        }</p>
         <p><strong>Disconnection Reason:</strong> ${disconnection_reason}</p>
         <p><strong>Transcript:</strong></p>
         <pre>${transcript}</pre>
@@ -78,7 +83,7 @@ export default async function handler(req, res) {
 
       try {
         await resend.emails.send({
-          from: "grit-it@gritppo.com",
+          from: "partner_va@gritppo.com",
           to: [
             "sofia.etchepare@sidetool.co",
             "evy@gritppo.com",
