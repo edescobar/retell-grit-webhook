@@ -78,7 +78,7 @@ export default async function handler(req, res) {
 
       try {
         await resend.emails.send({
-          from: "partner_va@gritppo.com",
+          from: "grit-it@gritppo.com",
           to: [
             "sofia.etchepare@sidetool.co",
             "evy@gritppo.com",
